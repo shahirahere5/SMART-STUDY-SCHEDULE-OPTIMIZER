@@ -1,171 +1,93 @@
 # SMART-STUDY-SCHEDULE-OPTIMIZER
-This project implements a task scheduling system in C++ that generates an optimized daily work plan based on:
+A C++ program that generates an **optimized daily task schedule** based on:
 
-✅ Task dependencies
-✅ Difficulty level
-✅ Deadline urgency
-✅ Task duration
-✅ Limited working hours per day (default: 8 hours)
+- Task dependencies
+- Difficulty level
+- Deadlines
+- Duration
+- Limited working hours per day (default: 8 hours)
 
-It ensures that:
+The scheduler ensures that tasks are completed in a valid order and prioritizes urgent or difficult tasks.
 
-Tasks are completed only after their dependencies
+---
 
-Higher-priority tasks are scheduled earlier
+## 📌 Features
 
-No more than the allowed daily working hours are used
+- ✅ User-defined tasks
+- ✅ Dependency handling
+- ✅ Topological sorting (Kahn's Algorithm)
+- ✅ Custom Max Heap priority queue
+- ✅ Daily scheduling (8 hours/day)
+- ✅ Cycle detection in dependencies
 
-A valid topological order is followed (detects dependency cycles)
+---
 
-🚀 Features
-🔹 Task Input System
+## 📂 Task Structure
 
-Users can enter:
+Each task includes:
 
-Task name
+| Field | Description |
+|--------|-------------|
+| Name | Task identifier |
+| Deadline | Days remaining |
+| Difficulty | 1–10 scale |
+| Duration | Hours needed |
+| Dependencies | Other tasks required before this |
 
-Deadline (in days)
-
-Difficulty (1–10)
-
-Required hours
-
-Dependencies
-
-🔹 Priority Calculation
-
-Each task receives a priority score:
+Priority formula:
 
 priority = (1 / deadline) + difficulty
 
+yaml
+Copy code
 
-Meaning:
+---
 
-Tasks with closer deadlines and higher difficulty get higher priority.
+## 🧠 How It Works
 
-🔹 Topological Sorting
+1. User inputs tasks
+2. Program assigns priority scores
+3. Builds a dependency graph
+4. Performs topological sorting
+5. Uses a Max Heap to select the highest-priority available task
+6. Schedules tasks into daily plans (8 hours max)
+7. Prints the final schedule
 
-The program:
+---
 
-Builds a dependency graph
+## 🛠️ Build & Run
 
-Computes task order using Kahn’s algorithm
-
-Detects cycles in dependencies
-
-🔹 Max Heap Scheduling
-
-A custom max heap selects the highest-priority available task that fits in remaining daily hours.
-
-🔹 Daily Schedule Output
-
-The system generates:
-
------FINAL DAILY SCHEDULE-----
-Day 1: TaskA TaskC
-Day 2: TaskB
-...
-
-🛠️ Technologies Used
-
-C++ (Object-Oriented Design)
-
-Custom:
-
-Linked List-based Queue
-
-Max Heap implementation
-
-Graph Theory (Topological Sort)
-
-Greedy Scheduling Logic
-
-📂 Project Structure
-main.cpp
-
-
-Contains:
-
-Task struct
-
-Queue class
-
-MaxHeap class
-
-Graph builder
-
-Topological sorting
-
-Scheduler
-
-Console I/O system
-
-🧠 How It Works (Flow)
-
-User enters tasks + dependencies
-
-Program assigns priority scores
-
-Builds a dependency graph
-
-Performs topological sorting
-
-Schedules tasks daily:
-
-8 hours max per day
-
-Picks highest priority available tasks
-
-Prints final schedule
-
-▶️ How to Run
-Compile
+```sh
 g++ main.cpp -o scheduler
-
-Run
 ./scheduler
-
-✅ Example Input
-enter number of tasks: 3
-enter task name: A
-enter deadline(in days): 2
-enter difficulty(1 to 10): 5
-enter hours required: 4
-number of dependencies for this task: 0
-
-enter task name: B
-enter deadline(in days): 1
-enter difficulty(1 to 10): 7
-enter hours required: 3
-number of dependencies for this task: 1
-enter dependency indexes: 0
-
-enter task name: C
-...
-
-✅ Output Example
+✅ Example Output
+sql
+Copy code
 -----FINAL DAILY SCHEDULE-----
-Day 1: A B
-Day 2: C
+Day 1: Design Research
+Day 2: Prototype Testing
+Day 3: Report
+🧱 Technologies Used
+C++
 
-⚠️ Limitations / Future Improvements
+Custom Max Heap
 
-No save/load functionality
+Linked List Queue
 
-No GUI
+Graph Theory
 
-Priority formula can be improved
+Greedy Scheduling
 
-Currently stops scheduling when a task doesn't fit remaining hours
+🚧 Future Improvements
+Better priority formula
 
-🏗️ Future Enhancements (Planned)
+Split long tasks across days
 
-🔸 Better priority model
-🔸 Automatic time splitting for long tasks
-🔸 File-based task input
-🔸 Web or desktop UI
-🔸 Visualization of dependency graph
+File-based task input
+
+GUI or web interface
+
+Dependency graph visualization
 
 📜 License
-
 This project is open-source and free to use.
