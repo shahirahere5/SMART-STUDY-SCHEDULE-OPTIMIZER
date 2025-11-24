@@ -38,9 +38,6 @@ Priority formula:
 
 priority = (1 / deadline) + difficulty
 
-yaml
-Copy code
-
 ---
 
 ## 🧠 How It Works
@@ -67,6 +64,8 @@ Copy code
 Day 1: Design Research
 Day 2: Prototype Testing
 Day 3: Report
+
+```
 🧱 Technologies Used
 C++
 
